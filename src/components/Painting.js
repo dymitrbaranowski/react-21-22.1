@@ -1,15 +1,17 @@
+import defaultImage from './default.jpg';
+
 export default function Painting({
-  url,
+  imageUrl = defaultImage,
   title,
   profileUrl,
-  author,
+  author = 'не известен',
   price,
   quantity,
 }) {
   // const { url, title, profileUrl, author, price, quantity } = props;
   return (
     <div>
-      <img src={url} alt={title} width="480" />
+      <img src={imageUrl} alt={title} width="480" />
       <h2>{title}</h2>
       <p>
         Автор: <a href={profileUrl}>{author}</a>
