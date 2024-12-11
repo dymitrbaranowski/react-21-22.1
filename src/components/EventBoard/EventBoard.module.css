@@ -1,7 +1,7 @@
 .eventBoard {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, auto));
-  gap: 240px;
+  gap: 24px;
   padding-left: 16px;
   padding-right: 16px;
 }
