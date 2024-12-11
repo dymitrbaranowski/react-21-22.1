@@ -5,9 +5,13 @@ import {
   FaCalendarAlt,
   FaClock,
 } from 'react-icons/fa';
+import { formatEventStart } from 'utils/formatEventStart';
+import { formatEventDuration } from 'utils/formatEventDuration';
 import css from './Event.module.css';
 
 export const Event = ({ name, location, speaker, type, start, end }) => {
+  const formattedStart = formatEventStart(start);
+  const duration = formatEventDuration(start, end);
   return (
     <div className={css.event}>
       <h2 className={css.title}>{name}</h2>
@@ -21,11 +25,11 @@ export const Event = ({ name, location, speaker, type, start, end }) => {
       </p>
       <p className={css.info}>
         <FaCalendarAlt className={css.icon} size={16} />
-        {start}
+        {formattedStart}
       </p>
       <p className={css.info}>
         <FaClock className={css.icon} size={16} />
-        Duration
+        {duration}
       </p>
     </div>
   );
