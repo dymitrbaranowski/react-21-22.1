@@ -1,60 +1,30 @@
-# react-21-22
+# react-18
 
-- Зачем нужны JS-фреймворки?
-- [Концепция Virtual DOM](https://illustrated.dev/react-vdom)
-- [create-react-app](https://create-react-app.dev/)
-  - webpack
-  - babel
-  - eslint
-  - react
-  - react-dom
-- React-элементы и `React.createElement()`
-  - Тип элемента
-  - Пропсы
-  - children
-- JSX как шаблонизатор
-  - [Новый трансформ](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html)
-  - Выражения в JSX.
-  - Рендер по условию с `&&` и `?`
-- Компоненты-функции
-  - Имя маленькой в JSX - строка, с большой - имя переменной.
-- Передача данных через Props
-  - Значения пропсов по умолчанию
-  - Дефолтные локальные изображения.
-- [Инструменты разработчика - React DevTools](http://fecore.net.ua/books/rq7s2k-react/lesson-01/#react-devtools)
-- [Пакет prop-types](https://www.npmjs.com/package/prop-types)
-- Свойство `propTypes`
-- Работа с коллекциями, ключи
-- Основы композиции компонентов, потомки (props.children). Делаем панель.
-- [Строгий режим](https://ru.reactjs.org/docs/strict-mode.html)
-
-## Компонент `Painting`
-
-```html
-<div>
-  <img src="" alt="" width="480" />
-  <h2></h2>
-  <p>Автор: <a href=""></a></p>
-  <p>Цена: кредитов</p>
-  <p>Доступность: заканчивается или есть в наличии}</p>
-  <button type="button">Добавить в корзину</button>
-</div>
-```
-
-## Компонент `PaintingList`
-
-```html
-<ul>
-  <li>Painting</li>
-  ...
-</ul>
-```
-
-## Компонент `Section`
-
-```html
-<div style="outline: 1px solid tomato;">
-  <h2></h2>
-  Контент
-</div>
-```
+- Компоненты-классы: class, extends, constructor(), render()
+- События:
+  - Встроенные пропсы событий
+  - Инлайн колбеки
+  - Методы для колбеков в разметку (публичные свойства класса)
+  - SyntheticEvent Object и асинхронные операции
+- [Внутреннее состояние компонента](http://fecore.net.ua/books/rq7s2k-react/lesson-03/images/class-component.jpg):
+  - [Обновение компонента](http://fecore.net.ua/books/rq7s2k-react/lesson-03/images/reactivity.jpg)
+  - state в конструкторе
+  - state как публичное свойство
+- [Изменение состояния](./state-update.png):
+  - Запрет на изменение вручную по ссылке
+  - Метод setState(update, callback)
+  - Как обновляется состояние - передача слайса
+  - Изменение состояния от предыдущего. Метод setState(updaterFn, callback)
+  - Начальное состояние от props
+- [Подъем состояния при композиции (state hoisting, lifting state up)](http://fecore.net.ua/books/rq7s2k-react/lesson-03/#%D0%BF%D0%BE%D0%B4%D1%8A%D0%B5%D0%BC-%D1%81%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D1%8F-state-hoisting)
+  - Методы для колбеков в пропсы детям (публичные свойства класса)
+- Выпадающее меню:
+  - Тогл элемента
+  - Как правильно скрывать и показывать компоненты в React
+- Оживляем колорпикер:
+  - Храним выбранный цвет
+  - Добавляем стиль активного элемента
+- Коллекция заметок (работа с массивом):
+  - Создание заметки
+  - Удаление заметки
+  - Вычисляемые данные (derived data)
