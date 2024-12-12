@@ -26,11 +26,11 @@ EventBoard.prototypes = {
       name: PropTypes.string.isRequired,
       location: PropTypes.string.isRequired,
       speaker: PropTypes.string.isRequired,
-      type: PropTypes.bool.isRequired,
-      time: {
+      type: PropTypes.string.isRequired,
+      time: PropTypes.exact({
         start: PropTypes.string.isRequired,
         end: PropTypes.string.isRequired,
-      },
+      }),
     })
   ).isRequired,
 };
