@@ -22,7 +22,10 @@ class Dropdown extends Component {
         <button type="button" className="Dropdown__toggle" onClick={this.hide}>
           Скрыть
         </button>
-        <div className="Dropdown__menu">Выпадающее меню</div>
+
+        {this.state.visible && (
+          <div className="Dropdown__menu">Выпадающее меню</div>
+        )}
       </div>
     );
   }
