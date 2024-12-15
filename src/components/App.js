@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-//import Counter from 'components/Counter';
-// import Dropdown from 'components/Dropdown';
+import Counter from 'components/Counter';
+import Dropdown from 'components/Dropdown';
 import ColorPicker from 'components/ColorPicker';
 
 const colorPickerOptions = [
@@ -16,8 +16,8 @@ class App extends Component {
     return (
       <>
         <h1>Состояние компонента</h1>
-        {/* <Counter initialValue={0} /> */}
-        {/* <Dropdown /> */}
+        <Counter initialValue={0} />
+        <Dropdown />
 
         <ColorPicker options={colorPickerOptions} />
       </>
