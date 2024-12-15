@@ -1,92 +1,102 @@
 import React, { Component } from 'react';
-import shortid from 'shortid';
+// import shortid from 'shortid';
 // import ColorPicker from './components/ColorPicker';
 // import Counter from './components/Counter';
 import Container from './Container';
-import TodoList from './TodoList';
-import TodoEditor from './TodoEditor';
-import Filter from './Filter';
+// import TodoList from './TodoList';
+// import TodoEditor from './TodoEditor';
+// import Filter from './Filter';
 // import Form from './Form';
 import initialTodos from '../todos.json';
 
 class App extends Component {
   state = {
     todos: initialTodos,
-    filter: '',
+    inputValue: '123',
   };
 
-  addTodo = text => {
-    const todo = {
-      id: shortid.generate(),
-      text,
-      completed: false,
-    };
+  // addTodo = text => {
+  //   const todo = {
+  //     id: shortid.generate(),
+  //     text,
+  //     completed: false,
+  //   };
 
-    this.setState(({ todos }) => ({
-      todos: [todo, ...todos],
-    }));
+  //   this.setState(({ todos }) => ({
+  //     todos: [todo, ...todos],
+  //   }));
+  // };
+
+  // deleteTodo = todoId => {
+  //   this.setState(prevState => ({
+  //     todos: prevState.todos.filter(todo => todo.id !== todoId),
+  //   }));
+  // };
+
+  // toggleCompleted = todoId => {
+  //   // this.setState(prevState => ({
+  //   //   todos: prevState.todos.map(todo => {
+  //   //     if (todo.id === todoId) {
+  //   //       return {
+  //   //         ...todo,
+  //   //         completed: !todo.completed,
+  //   //       };
+  //   //     }
+
+  //   //     return todo;
+  //   //   }),
+  //   // }));
+
+  //   this.setState(({ todos }) => ({
+  //     todos: todos.map(todo =>
+  //       todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
+  //     ),
+  //   }));
+  // };
+
+  // changeFilter = e => {
+  //   this.setState({ filter: e.currentTarget.value });
+  // };
+
+  // getVisibleTodos = () => {
+  //   const { filter, todos } = this.state;
+  //   const normalizedFilter = filter.toLowerCase();
+
+  //   return todos.filter(todo =>
+  //     todo.text.toLowerCase().includes(normalizedFilter)
+  //   );
+  // };
+
+  // calculateCompletedTodos = () => {
+  //   const { todos } = this.state;
+
+  //   return todos.reduce(
+  //     (total, todo) => (todo.completed ? total + 1 : total),
+  //     0
+  //   );
+  // };
+
+  handleInputChange = event => {
+    console.log(event.currentTarget.value);
+
+    this.setState({ inputValue: event.currentTarget.value });
   };
-
-  deleteTodo = todoId => {
-    this.setState(prevState => ({
-      todos: prevState.todos.filter(todo => todo.id !== todoId),
-    }));
-  };
-
-  toggleCompleted = todoId => {
-    // this.setState(prevState => ({
-    //   todos: prevState.todos.map(todo => {
-    //     if (todo.id === todoId) {
-    //       return {
-    //         ...todo,
-    //         completed: !todo.completed,
-    //       };
-    //     }
-
-    //     return todo;
-    //   }),
-    // }));
-
-    this.setState(({ todos }) => ({
-      todos: todos.map(todo =>
-        todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
-      ),
-    }));
-  };
-
-  changeFilter = e => {
-    this.setState({ filter: e.currentTarget.value });
-  };
-
-  getVisibleTodos = () => {
-    const { filter, todos } = this.state;
-    const normalizedFilter = filter.toLowerCase();
-
-    return todos.filter(todo =>
-      todo.text.toLowerCase().includes(normalizedFilter)
-    );
-  };
-
-  calculateCompletedTodos = () => {
-    const { todos } = this.state;
-
-    return todos.reduce(
-      (total, todo) => (todo.completed ? total + 1 : total),
-      0
-    );
-  };
-
   render() {
-    const { todos, filter } = this.state;
-    const totalTodoCount = todos.length;
-    const completedTodoCount = this.calculateCompletedTodos();
-    const visibleTodos = this.getVisibleTodos();
+    // const { todos, filter } = this.state;
+    // const totalTodoCount = todos.length;
+    // const completedTodoCount = this.calculateCompletedTodos();
+    // const visibleTodos = this.getVisibleTodos();
 
     return (
       <Container>
+        <input
+          type="text"
+          value={this.state.inputValue}
+          onChange={this.handleInputChange}
+        />
         {/* TODO: вынести в отдельный компонент */}
 
-        <div>
+        {/* <div>
           <p>Всего заметок: {totalTodoCount}</p>
           <p>Выполнено: {completedTodoCount}</p>
         </div>
@@ -99,7 +109,7 @@ class App extends Component {
           todos={visibleTodos}
           onDeleteTodo={this.deleteTodo}
           onToggleCompleted={this.toggleCompleted}
-        />
+        /> */}
       </Container>
     );
   }
