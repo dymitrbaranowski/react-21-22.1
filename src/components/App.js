@@ -6,7 +6,7 @@ import Container from './Container';
 // import TodoList from './TodoList';
 // import TodoEditor from './TodoEditor';
 // import Filter from './Filter';
-// import Form from './Form';
+import Form from './Form';
 import initialTodos from '../todos.json';
 
 class App extends Component {
@@ -16,6 +16,7 @@ class App extends Component {
   };
 
   // addTodo = text => {
+
   //   const todo = {
   //     id: shortid.generate(),
   //     text,
@@ -76,11 +77,10 @@ class App extends Component {
   //   );
   // };
 
-  handleInputChange = event => {
-    console.log(event.currentTarget.value);
-
-    this.setState({ inputValue: event.currentTarget.value });
+  formSubmitHandler = data => {
+    console.log(data);
   };
+
   render() {
     // const { todos, filter } = this.state;
     // const totalTodoCount = todos.length;
@@ -89,11 +89,7 @@ class App extends Component {
 
     return (
       <Container>
-        <input
-          type="text"
-          value={this.state.inputValue}
-          onChange={this.handleInputChange}
-        />
+        <Form onSubmit={this.formSubmitHandler} />
         {/* TODO: вынести в отдельный компонент */}
 
         {/* <div>

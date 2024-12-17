@@ -12,10 +12,17 @@ class Form extends Component {
   nameInputId = shortid.generate();
   tagInputId = shortid.generate();
 
-  handleChange = e => {
-    const { name, value } = e.currentTarget;
+  handleChange = event => {
+    const { name, value } = event.currentTarget;
+    this.setState({
+      [name]: value,
+    });
+  };
 
-    this.setState({ [name]: value });
+  handleLicenceChanges = e => {
+    console.log(e.currentTarget.checked);
+
+    this.setState({ licence: e.currentTarget.checked });
   };
 
   handleSubmit = e => {
@@ -26,16 +33,9 @@ class Form extends Component {
     this.reset();
   };
 
-  handleLicenceChange = e => {
-    console.log(e.currentTarget.checked);
-
-    this.setState({ licence: e.currentTarget.checked });
-  };
-
   reset = () => {
     this.setState({ name: '', tag: '' });
   };
-
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
@@ -60,8 +60,8 @@ class Form extends Component {
             id={this.tagInputId}
           />
         </label>
-
-        <p>Ваш уровень:</p>
+        <br />
+        <p>Ваш уровень</p>
         <label>
           <input
             type="radio"
@@ -69,10 +69,9 @@ class Form extends Component {
             value="junior"
             onChange={this.handleChange}
             checked={this.state.experience === 'junior'}
-          />
+          />{' '}
           Junior
         </label>
-
         <label>
           <input
             type="radio"
@@ -80,7 +79,7 @@ class Form extends Component {
             value="middle"
             onChange={this.handleChange}
             checked={this.state.experience === 'middle'}
-          />
+          />{' '}
           Middle
         </label>
         <label>
@@ -90,25 +89,21 @@ class Form extends Component {
             value="senior"
             onChange={this.handleChange}
             checked={this.state.experience === 'senior'}
-          />
+          />{' '}
           Senior
         </label>
-
         <br />
-
         <label>
           <input
             type="checkbox"
             name="licence"
             checked={this.state.licence}
-            onChange={this.handleLicenceChange}
-          />
-          Согласен с условием
+            onChange={this.handleLicenceChanges}
+          />{' '}
+          Согласен с условиями
         </label>
 
-        <button type="submit" disabled={!this.state.licence}>
-          Отправить
-        </button>
+        <button type="submit">Отправить</button>
       </form>
     );
   }
