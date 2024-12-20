@@ -78,10 +78,10 @@ class App extends Component {
   // };
 
   toggleCompleted = todoId => {
-    console.log(todoId)
+    console.log(todoId);
 
-    this.setState({ prevState => ({})  });
-  }
+    this.setState(prevState => ({}));
+  };
   formSubmitHandler = data => {
     console.log(data);
   };
