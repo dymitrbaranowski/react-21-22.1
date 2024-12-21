@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 //import ColorPicker from './ColorPicker/ColorPicker';
 // import Counter from './components/Counter';
 import Container from './Container';
-// import TodoList from './TodoList';
+import TodoList from './TodoList';
 // import TodoEditor from './TodoEditor';
 // import Filter from './Filter';
-import Form from './Form';
+// import Form from './Form';
 import initialTodos from '../todos.json';
 
 class App extends Component {
@@ -78,9 +78,24 @@ class App extends Component {
   // };
 
   toggleCompleted = todoId => {
-    console.log(todoId);
+    // this.setState(prevState => ({
+    //   todos: prevState.todos.map(todo => {
+    //     if (todo.id === todoId) {
+    //       return {
+    //         ...todo,
+    //         completed: !todo.completed,
+    //       };
+    //     }
 
-    this.setState(prevState => ({}));
+    //     return todo;
+    //   }),
+    // }));
+
+    this.setState(({ todos }) => ({
+      todos: todos.map(todo =>
+        todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
+      ),
+    }));
   };
   formSubmitHandler = data => {
     console.log(data);
@@ -89,8 +104,8 @@ class App extends Component {
   render() {
     const { todos, filter } = this.state;
     const totalTodoCount = todos.length;
-    // const completedTodoCount = this.calculateCompletedTodos();
-    // const visibleTodos = this.getVisibleTodos();
+    //const completedTodoCount = this.calculateCompletedTodos();
+    //const visibleTodos = this.getVisibleTodos();
 
     return (
       <Container>
@@ -104,20 +119,20 @@ class App extends Component {
             { label: 'indigo', color: '#3F51B5' },
           ]}
         /> */}
-        <Form onSubmit={this.formSubmitHandler} />
+        {/* <Form onSubmit={this.formSubmitHandler} /> */}
         {/* TODO: вынести в отдельный компонент */}
 
         <div>
           <p>Всего заметок: {totalTodoCount}</p>
           <p>Выполнено: {completedTodoCount}</p>
         </div>
+        {/* 
+        <TodoEditor onSubmit={this.addTodo} /> */}
 
-        <TodoEditor onSubmit={this.addTodo} />
-
-        <Filter value={filter} onChange={this.changeFilter} />
+        {/* <Filter value={filter} onChange={this.changeFilter} /> */}
 
         <TodoList
-          todos={visibleTodos}
+          // todos={visibleTodos}
           onDeleteTodo={this.deleteTodo}
           onToggleCompleted={this.toggleCompleted}
         />
