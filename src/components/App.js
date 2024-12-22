@@ -5,7 +5,7 @@ import shortid from 'shortid';
 import Container from './Container';
 import TodoList from './TodoList';
 import TodoEditor from './TodoEditor';
-// import Filter from './Filter';
+import Filter from './Filter';
 // import Form from './Form';
 import initialTodos from '../todos.json';
 
@@ -108,7 +108,7 @@ class App extends Component {
 
         <TodoEditor onSubmit={this.addTodo} />
 
-        {/* <Filter value={filter} onChange={this.changeFilter} /> */}
+        <Filter value={filter} onChange={this.changeFilter} />
 
         <TodoList
           todos={visibleTodos}
