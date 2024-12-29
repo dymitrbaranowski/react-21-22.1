@@ -6,7 +6,7 @@ import Container from './Container';
 import TodoList from './TodoList';
 import TodoEditor from './TodoEditor';
 import Filter from './Filter';
-import Form from './Form';
+//import Form from './Form';
 import initialTodos from '../todos.json';
 
 class App extends Component {
@@ -91,14 +91,14 @@ class App extends Component {
         {/* <ColorPicker
           options={[
             { label: 'red', color: '#F44336' },
-            { label: 'green', color: '#4CAF50' },
+            { label: 'green', color: '#4CAF50' },   
             { label: 'blue', color: '#2196F3' },
             { label: 'grey', color: '#607D8B' },
             { label: 'pink', color: '#E91E63' },
             { label: 'indigo', color: '#3F51B5' },
           ]}
         /> */}
-        <Form onSubmit={this.formSubmitHandler} />
+        {/* <Form onSubmit={this.formSubmitHandler} /> */}
         {/* TODO: вынести в отдельный компонент */}
 
         <div>
