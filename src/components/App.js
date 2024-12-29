@@ -6,7 +6,7 @@ import Container from './Container';
 import TodoList from './TodoList';
 import TodoEditor from './TodoEditor';
 import Filter from './Filter';
-// import Form from './Form';
+import Form from './Form';
 import initialTodos from '../todos.json';
 
 class App extends Component {
@@ -98,7 +98,7 @@ class App extends Component {
             { label: 'indigo', color: '#3F51B5' },
           ]}
         /> */}
-        {/* <Form onSubmit={this.formSubmitHandler} /> */}
+        <Form onSubmit={this.formSubmitHandler} />
         {/* TODO: вынести в отдельный компонент */}
 
         <div>
