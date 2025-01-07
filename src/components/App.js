@@ -101,7 +101,25 @@ class App extends Component {
 
     return (
       <Container>
-        <IconButton onClick={this.toggleModal} aria-label="Добавить todo">
+        <button type="button" onClick={this.toggleModal}>
+          Открыть модалку
+        </button>
+        {showModal && (
+          <Modal onClose={this.toggleModal}>
+            <h1>Привет это контент модалки как children</h1>
+            <p>
+              Lorem import moduleName from 'module' Lorem import moduleName from
+              'module' Lorem import moduleName from 'module' Lorem import
+              moduleName from 'module' Lorem import moduleName from 'module'
+              Lorem import moduleName from 'module' Lorem import moduleName from
+              'module' Lorem import moduleName from 'module'
+            </p>
+            <button type="button" onClick={this.toggleModal}>
+              Закрыть
+            </button>
+          </Modal>
+        )}
+        {/* <IconButton onClick={this.toggleModal} aria-label="Добавить todo">
           <AddIcon width="40" height="40" fill="#fff" />
         </IconButton>
 
@@ -109,10 +127,10 @@ class App extends Component {
           <Modal onClose={this.toggleModal}>
             <TodoEditor onSubmit={this.addTodo} />
           </Modal>
-        )}
+        )} */}
         {/* TODO: вынести в отдельный компонент */}
 
-        <div>
+        {/* <div>
           <p>Всего заметок: {totalTodoCount}</p>
           <p>Выполнено: {completedTodoCount}</p>
         </div>
@@ -123,7 +141,7 @@ class App extends Component {
           todos={visibleTodos}
           onDeleteTodo={this.deleteTodo}
           onToggleCompleted={this.toggleCompleted}
-        />
+        /> */}
       </Container>
     );
   }
