@@ -1,20 +1,42 @@
 import React, { Component } from 'react';
 import shortid from 'shortid';
-//import ColorPicker from './ColorPicker/ColorPicker';
-// import Counter from './components/Counter';
 import Container from './Container';
 import TodoList from './TodoList';
 import TodoEditor from './TodoEditor';
 import Filter from './Filter';
+import Modal from './Modal';
+import IconButton from './IconButton';
+import { ReactComponent as AddIcon } from '../icons/add.svg';
 //import Form from './Form';
-import initialTodos from '../todos.json';
+// import initialTodos from '../todos.json';
 
 class App extends Component {
   state = {
-    todos: initialTodos,
-    inputValue: '123',
+    todos: [],
     filter: '',
+    showModal: false,
   };
+
+  componentDidMount() {
+    // console.log('App componentDidMount');
+
+    const todos = localStorage.getItem('todos');
+    const parsedTodos = JSON.parse(todos);
+
+    if (parsedTodos) {
+      this.setState({ todos: parsedTodos });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // console.log('App componentDidUpdate');
+
+    if (this.state.todos !== prevState.todos) {
+      console.log('Обновилась todos, записываю todos в хранилище');
+
+      localStorage.setItem('todos', JSON.stringify(this.state.todos));
+    }
+  }
 
   addTodo = text => {
     const todo = {
@@ -29,8 +51,16 @@ class App extends Component {
   };
 
   deleteTodo = todoId => {
-    this.setState(prevState => ({
-      todos: prevState.todos.filter(todo => todo.id !== todoId),
+    this.setState(({ todos }) => ({
+      todos: todos.filter(({ id }) => id !== todoId),
+    }));
+  };
+
+  toggleCompleted = todoId => {
+    this.setState(({ todos }) => ({
+      todos: todos.map(todo =>
+        todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
+      ),
     }));
   };
 
@@ -56,57 +86,36 @@ class App extends Component {
     );
   };
 
-  toggleCompleted = todoId => {
-    // this.setState(prevState => ({
-    //   todos: prevState.todos.map(todo => {
-    //     if (todo.id === todoId) {
-    //       return {
-    //         ...todo,
-    //         completed: !todo.completed,
-    //       };
-    //     }
-
-    //     return todo;
-    //   }),
-    // }));
-
-    this.setState(({ todos }) => ({
-      todos: todos.map(todo =>
-        todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
-      ),
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
     }));
-  };
-  formSubmitHandler = data => {
-    console.log(data);
   };
 
   render() {
-    const { todos, filter } = this.state;
+    console.log('App render');
+    const { todos, filter, showModal } = this.state;
     const totalTodoCount = todos.length;
     const completedTodoCount = this.calculateCompletedTodos();
     const visibleTodos = this.getVisibleTodos();
 
     return (
       <Container>
-        {/* <ColorPicker
-          options={[
-            { label: 'red', color: '#F44336' },
-            { label: 'green', color: '#4CAF50' },   
-            { label: 'blue', color: '#2196F3' },
-            { label: 'grey', color: '#607D8B' },
-            { label: 'pink', color: '#E91E63' },
-            { label: 'indigo', color: '#3F51B5' },
-          ]}
-        /> */}
-        {/* <Form onSubmit={this.formSubmitHandler} /> */}
+        <IconButton onClick={this.toggleModal} aria-label="Добавить todo">
+          <AddIcon width="40" height="40" fill="#fff" />
+        </IconButton>
+
+        {showModal && (
+          <Modal onClose={this.toggleModal}>
+            <TodoEditor onSubmit={this.addTodo} />
+          </Modal>
+        )}
         {/* TODO: вынести в отдельный компонент */}
 
         <div>
           <p>Всего заметок: {totalTodoCount}</p>
           <p>Выполнено: {completedTodoCount}</p>
         </div>
-
-        <TodoEditor onSubmit={this.addTodo} />
 
         <Filter value={filter} onChange={this.changeFilter} />
 
@@ -121,12 +130,3 @@ class App extends Component {
 }
 
 export default App;
-
-// const colorPickerOptions = [
-//   { label: 'red', color: '#F44336' },
-//   { label: 'green', color: '#4CAF50' },
-//   { label: 'blue', color: '#2196F3' },
-//   { label: 'grey', color: '#607D8B' },
-//   { label: 'pink', color: '#E91E63' },
-//   { label: 'indigo', color: '#3F51B5' },
-// ];
