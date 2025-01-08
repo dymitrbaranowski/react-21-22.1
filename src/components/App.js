@@ -5,6 +5,9 @@ import TodoList from './TodoList';
 import TodoEditor from './TodoEditor';
 import Filter from './Filter';
 import Modal from './Modal';
+import Tabs from './Tabs';
+import tabs from '../tabs.json';
+//import Clock from './Clock';
 import IconButton from './IconButton';
 import { ReactComponent as AddIcon } from '../icons/add.svg';
 //import Form from './Form';
@@ -93,7 +96,6 @@ class App extends Component {
   };
 
   render() {
-    console.log('App render');
     const { todos, filter, showModal } = this.state;
     const totalTodoCount = todos.length;
     const completedTodoCount = this.calculateCompletedTodos();
@@ -101,6 +103,7 @@ class App extends Component {
 
     return (
       <Container>
+        <Tabs items={tabs} />
         <button type="button" onClick={this.toggleModal}>
           Открыть модалку
         </button>

@@ -13,7 +13,7 @@ export default class Clock extends Component {
 
     this.intervalId = setInterval(
       () => this.setState({ time: new Date().toLocaleTimeString() }),
-      1000,
+      1000
     );
   }
 

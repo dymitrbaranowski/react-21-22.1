@@ -18,6 +18,8 @@ export default class Modal extends Component {
 
   componentWillUnmount() {
     console.log('modal componentWillUnmount');
+
+    window.removeEventListener('keydown', this.handleKeyDown);
   }
 
   handleKeyDown = e => {
@@ -27,9 +29,20 @@ export default class Modal extends Component {
       this.props.onClose();
     }
   };
+
+  handleBackdropClick = event => {
+    console.log('Кликнули на backdrop');
+
+    // console.log('currentTarget: ', event.currentTarget);
+    // console.log('target: ', event.target);
+
+    if (event.currentTarget === event.target) {
+      this.props.onClose();
+    }
+  };
   render() {
     return createPortal(
-      <div className="Modal__backdrop">
+      <div className="Modal__backdrop" onClick={this.handleBackdropClick}>
         <div className="Modal__content">{this.props.children}</div>
       </div>,
       modalRoot
