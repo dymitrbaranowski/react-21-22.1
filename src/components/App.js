@@ -34,18 +34,18 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     // console.log('App componentDidUpdate');
 
-    if (this.state.todos !== prevState.todos) {
+    const nextTodos = this.state.todos;
+    const prevTodos = prevState.todos;
+
+    if (nextTodos !== prevTodos) {
       console.log('Обновилась todos, записываю todos в хранилище');
 
       localStorage.setItem('todos', JSON.stringify(this.state.todos));
     }
 
-    // if (
-    //   this.state.todos.length > prevState.todos.length &&
-    //   prevState.todos.length !== 0
-    // ) {
-    //   this.toggleModal();
-    // }
+    if (nextTodos.length > prevTodos.length && prevState.todos.length !== 0) {
+      this.toggleModal();
+    }
   }
 
   addTodo = text => {
@@ -59,7 +59,7 @@ class App extends Component {
       todos: [todo, ...todos],
     }));
 
-    this.toggleModal();
+    // this.toggleModal();
   };
 
   deleteTodo = todoId => {
