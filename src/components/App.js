@@ -3,7 +3,7 @@ import shortid from 'shortid';
 import Container from './Container';
 import TodoList from './TodoList';
 import TodoEditor from './TodoEditor';
-import Filter from './Filter';
+import Filter from './TodoFilter';
 import Modal from './Modal';
 import Tabs from './Tabs';
 import tabs from '../tabs.json';
@@ -39,6 +39,13 @@ class App extends Component {
 
       localStorage.setItem('todos', JSON.stringify(this.state.todos));
     }
+
+    // if (
+    //   this.state.todos.length > prevState.todos.length &&
+    //   prevState.todos.length !== 0
+    // ) {
+    //   this.toggleModal();
+    // }
   }
 
   addTodo = text => {
@@ -51,6 +58,8 @@ class App extends Component {
     this.setState(({ todos }) => ({
       todos: [todo, ...todos],
     }));
+
+    this.toggleModal();
   };
 
   deleteTodo = todoId => {
@@ -103,23 +112,16 @@ class App extends Component {
 
     return (
       <Container>
-        <Tabs items={tabs} />
+        <IconButton onClick={this.toggleModal} aria-label="Добавить todo">
+          <AddIcon width="40" height="40" fill="#fff" />
+        </IconButton>
+        {/* <Tabs items={tabs} /> */}
         <button type="button" onClick={this.toggleModal}>
           Открыть модалку
         </button>
         {showModal && (
           <Modal onClose={this.toggleModal}>
-            <h1>Привет это контент модалки как children</h1>
-            <p>
-              Lorem import moduleName from 'module' Lorem import moduleName from
-              'module' Lorem import moduleName from 'module' Lorem import
-              moduleName from 'module' Lorem import moduleName from 'module'
-              Lorem import moduleName from 'module' Lorem import moduleName from
-              'module' Lorem import moduleName from 'module'
-            </p>
-            <button type="button" onClick={this.toggleModal}>
-              Закрыть
-            </button>
+            <TodoEditor onSubmit={this.addTodo} />
           </Modal>
         )}
         {/* <IconButton onClick={this.toggleModal} aria-label="Добавить todo">
@@ -133,7 +135,7 @@ class App extends Component {
         )} */}
         {/* TODO: вынести в отдельный компонент */}
 
-        {/* <div>
+        <div>
           <p>Всего заметок: {totalTodoCount}</p>
           <p>Выполнено: {completedTodoCount}</p>
         </div>
@@ -144,7 +146,7 @@ class App extends Component {
           todos={visibleTodos}
           onDeleteTodo={this.deleteTodo}
           onToggleCompleted={this.toggleCompleted}
-        /> */}
+        />
       </Container>
     );
   }
