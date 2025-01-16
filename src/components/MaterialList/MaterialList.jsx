@@ -1,11 +1,20 @@
-import { Material } from '../Material/Material';
+//import { Material } from '../Material/Material';
 
-export const MaterialList = ({ items, ...otherProps }) => {
+export const Material = ({ items, onDelete }) => {
   return (
     <ul>
       {items.map(item => (
         <li key={item.id}>
-          <Material item={item} {...otherProps} />
+          <p>
+            <b>Название: </b>
+            {item.title}
+          </p>
+          <p>
+            <b>Ссылка: </b> {item.link}
+          </p>
+          <button type="button" onClick={() => onDelete(item.id)}>
+            Удалить
+          </button>
           <hr />
         </li>
       ))}
