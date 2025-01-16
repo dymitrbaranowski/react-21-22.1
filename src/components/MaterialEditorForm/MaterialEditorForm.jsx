@@ -8,12 +8,12 @@ export const MaterialEditorForm = ({ onSubmit }) => {
   return (
     <Formik initialValues={{ title: '', link: '' }} onSubmit={handleSubmit}>
       <Form>
-        <label htmlFor="title">
+        <label>
           Описание
           <Field type="text" name="title" />
         </label>
         <br />
-        <label htmlFor="title">
+        <label>
           Ссылка
           <Field type="text" name="link" />
         </label>
